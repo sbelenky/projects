@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Snake Game</title>
+</head>
+<body>
+
+Username: <input id="username"><br>
+Server: <input id="server"><br>
+<button id="join">JOIN</button>
+
+
+<script type="text/javascript">
+	var joinButton = document.getElementById("join");
+
+	joinButton.onclick = function() {
+		var username = document.getElementById("username").value;
+		var server = document.getElementById("server").value;
+
+		var connection = new WebSocket('ws://' + server + ":8050");
+
+		connection.onopen = function() {
+			connection.send(username);
+		};
+	};
+</script>
+
+</body>
+</html>
